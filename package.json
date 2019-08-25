@@ -1,0 +1,34 @@
+{
+  "name": "pluton",
+  "version": "0.1.0",
+  "description": "Transceiver based on SDRangel + PlutoSDR",
+  "bin": {
+    "pluton": "./bin/pluton.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AI6YP/pluton.git"
+  },
+  "keywords": [],
+  "author": "AI6YP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AI6YP/pluton/issues"
+  },
+  "homepage": "https://github.com/AI6YP/pluton#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.2",
+    "fs-extra": "^8.1.0",
+    "ip": "^1.1.5",
+    "json5": "^2.1.0",
+    "portfinder": "^1.0.13",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "yargs": "^13.3.0"
+  }
+}
