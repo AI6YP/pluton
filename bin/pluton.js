@@ -51,6 +51,12 @@ const tx = angel('deviceset', 1);
 const initConfig = async () => {
   // client
   const sdrangel = chp.spawn('sdrangel');
+
+  sdrangel.on('error', () => {
+    console.log('sdrangel not found');
+    process.exit(1);
+  });
+
   sdrangel.stdout.on('data', (data) => { console.log(`stdout: ${data}`); });
   sdrangel.stderr.on('data', (data) => { console.log(`stderr: ${data}`); });
   sdrangel.on('close', (code) => { console.log(`child process exited with code ${code}`); });
@@ -87,9 +93,7 @@ const initConfig = async () => {
     console.log(modset);
     Object.assign(modset, config[1].channel);
     await rp({method: 'PATCH', uri: tx('channel', 0, 'settings'), json: true, body: modset});
-
   }
-
   await rp({method: 'POST',  uri: rx('device', 'run'), json: true});
   await rp({method: 'PATCH', uri: rx('focus'), json: true});
   await rp({method: 'POST',  uri: tx('device', 'run'), json: true});
