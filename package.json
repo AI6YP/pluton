@@ -1,6 +1,6 @@
 {
   "name": "pluton",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Transceiver based on SDRangel + PlutoSDR",
   "bin": {
     "pluton": "./bin/pluton.js"
