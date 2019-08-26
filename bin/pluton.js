@@ -11,6 +11,8 @@ const portfinder = require('portfinder');
 const rp = require('request-promise-native');
 const json5 = require('json5');
 const yargs = require('yargs');
+const merge = require('lodash.merge');
+const defaultConfig = require('../lib/default-config.js');
 
 const msleep = time => new Promise(resolve => setTimeout(() => resolve(), time));
 
@@ -63,7 +65,8 @@ const initConfig = async () => {
 
   if (argv.config) {
     const fbody = await fs.readFile(argv.config, 'utf8');
-    const config = json5.parse(fbody);
+    const config1 = json5.parse(fbody);
+    const config = merge(defaultConfig, config1);
 
     let rxset = await rp({uri: rx('device', 'settings'), json: true});
     console.log(rxset);

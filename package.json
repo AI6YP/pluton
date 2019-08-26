@@ -26,6 +26,7 @@
     "fs-extra": "^8.1.0",
     "ip": "^1.1.5",
     "json5": "^2.1.0",
+    "lodash.merge": "^4.6.2",
     "portfinder": "^1.0.13",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
