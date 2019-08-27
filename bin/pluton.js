@@ -62,6 +62,15 @@ const initConfig = async () => {
   sdrangel.on('close', (code) => { console.log(`child process exited with code ${code}`); });
   await msleep(5000);
 
+  let devsets = await rp({uri: [baseUri, 'devicesets'].join('/'), json: true});
+
+  for (let d = 0; d < devsets.deviceSets.length; d++) {
+    const deviceSet = devsets.deviceSets[d];
+    for (let c = deviceSet.channelcount - 1; c >= 0; c--) {
+      await rp({method: 'DELETE', uri: rx('channel', c), json: true});
+    }
+  }
+
   await rp({method: 'PUT', uri: rx('device'), json: true, body: {hwType: 'PlutoSDR', direction: 0}});
   await rp({method: 'POST', uri: rx('channel'), json: true, body: {channelType: 'SSBDemod', direction: 0}});
 
